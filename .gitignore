@@ -4,6 +4,8 @@
 .classpath
 .project
 .settings
+.factorypath
+.mvn/**
 
 # Package Files #
 *.jar
