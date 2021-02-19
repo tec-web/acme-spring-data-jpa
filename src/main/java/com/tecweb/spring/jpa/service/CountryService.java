@@ -21,4 +21,8 @@ public class CountryService {
 		countryRepository.findAll().forEach(countries::add);
 		return countries;
 	}
+
+	public Country save(Country country) {
+		return countryRepository.save(country);
+	}
 }

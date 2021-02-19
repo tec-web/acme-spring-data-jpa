@@ -1,25 +1,26 @@
 package com.tecweb.spring.jpa.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "COUNTRIES")
 public class Country {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "country_id")
+	@Column(name = "country_id", unique = true)
 	private String countryId;
 
 	@Column(name = "country_name")
 	private String countryName;
 
-	@Column(name = "region_id")
-	private Integer regionId;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "region_id")
+	private Region region;
 
 	public Country() {
 		super();
@@ -41,11 +42,11 @@ public class Country {
 		this.countryName = countryName;
 	}
 
-	public Integer getRegionId() {
-		return regionId;
+	public Region getRegion() {
+		return region;
 	}
 
-	public void setRegionId(Integer regionId) {
-		this.regionId = regionId;
+	public void setRegion(Region region) {
+		this.region = region;
 	}
 }
